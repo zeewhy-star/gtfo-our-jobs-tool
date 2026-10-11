@@ -1,0 +1,15 @@
+{
+  "opportunities": [
+    {
+      "Id": "6b1f2a40-1111-2222-3333-444455556666",
+      "Title": "Program Manager, Governance",
+      "RequisitionNumber": "PROGR001234",
+      "FullTime": true,
+      "PostedDate": "2026-10-10T14:05:00.000Z",
+      "JobLocationType": 2,
+      "BriefDescription": "Coordinate &lt;b&gt;committee&lt;/b&gt; operations.",
+      "Locations": [ { "Address": { "City": "Chicago", "State": { "Code": "IL", "Name": "Illinois" } } } ]
+    }
+  ],
+  "totalCount": 1
+}

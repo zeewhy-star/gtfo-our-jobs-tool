@@ -1,0 +1,23 @@
+{
+  "offset": 0,
+  "limit": 100,
+  "totalFound": 2,
+  "content": [
+    {
+      "id": "744000091234567",
+      "name": "Manager, Clinical Operations Projects",
+      "uuid": "3f0a7c2e-0000-4bbb-8ccc-1234567890ab",
+      "refNumber": "REF12345A",
+      "company": { "identifier": "NorthwesternMedicine", "name": "Northwestern Medicine" },
+      "releasedDate": "2026-10-10T13:30:00.000Z",
+      "location": { "city": "Chicago", "region": "IL", "country": "us", "remote": false, "hybrid": true, "fullLocation": "Chicago, IL, United States" }
+    },
+    {
+      "id": "744000091111111",
+      "name": "Registered Nurse, Med Surg",
+      "company": { "identifier": "NorthwesternMedicine", "name": "Northwestern Medicine" },
+      "releasedDate": "2026-09-01T10:00:00.000Z",
+      "location": { "city": "Lake Forest", "region": "IL", "country": "us", "remote": false }
+    }
+  ]
+}

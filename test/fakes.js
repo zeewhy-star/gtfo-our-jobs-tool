@@ -100,7 +100,8 @@ function makeServices(responses) {
         const match = responses.find((r) => url.includes(r.match));
         const code = match ? (match.code || 200) : 404;
         const body = match ? JSON.stringify(match.body) : 'not found';
-        return { getResponseCode: () => code, getContentText: () => body };
+        const headers = match && match.headers ? match.headers : {};
+        return { getResponseCode: () => code, getContentText: () => body, getHeaders: () => headers };
       },
     },
   };

@@ -91,6 +91,10 @@ function fetchForWatchRow_(row, now) {
   if (system === 'greenhouse') return fetchGreenhouse_(token, row.employer);
   if (system === 'lever') return fetchLever_(token, row.employer);
   if (system === 'workday') return fetchWorkday_(token, row.employer, now, 2);
+  if (system === 'adp') return fetchAdp_(token, row.employer);
+  if (system === 'ultipro') return fetchUltiPro_(token, row.employer);
+  if (system === 'smartrecruiters') return fetchSmartRecruiters_(token, row.employer);
+  if (system === 'workable') return fetchWorkable_(token, row.employer);
   throw new Error('Unsupported careers system: ' + row.careers_system);
 }
 

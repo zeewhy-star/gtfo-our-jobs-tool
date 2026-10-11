@@ -42,6 +42,12 @@ function activate(env, employer, system, token) {
   return i;
 }
 
+// The seeded watchlist starts with real employers active. Tests that
+// control their own sources turn those off first.
+function deactivateAll(env) {
+  tab(env, 'Watchlist').forEach((_, i) => setCell(env, 'Watchlist', i, 'active', false));
+}
+
 function endBaseline(env) {
   const i = tab(env, 'Settings').findIndex((r) => r.key === 'baseline_until');
   setCell(env, 'Settings', i, 'value', new Date(Date.now() - HOUR));
@@ -79,6 +85,7 @@ test('a full day: first check builds a baseline, new postings reach the digest o
   const lever = { match: 'api.lever.co/v0/postings/examplenp', body: leverBody() };
   const { env, g, newRun } = boot([lever]);
   g.setup();
+  deactivateAll(env);
   endBaseline(env);
   activate(env, 'Feeding America', 'lever', 'examplenp');
 
@@ -129,6 +136,7 @@ test('a full day: first check builds a baseline, new postings reach the digest o
 test('a failing source is counted, logged, and listed in the digest', () => {
   const { env, g, newRun } = boot([{ match: 'api.lever.co/v0/postings/broken', code: 404, body: {} }]);
   g.setup();
+  deactivateAll(env);
   const i = activate(env, 'HIMSS', 'lever', 'broken');
   for (let run = 0; run < 3; run++) { newRun(); g.runCollector(); }
   const row = tab(env, 'Watchlist')[i];
@@ -146,6 +154,7 @@ test('a 404 is not retried, but a server error is retried 3 times', () => {
     { match: 'postings/flaky', code: 503, body: {} },
   ]);
   g.setup();
+  deactivateAll(env);
   activate(env, 'HIMSS', 'lever', 'gone');
   activate(env, 'WTTW', 'lever', 'flaky');
   newRun();
@@ -158,6 +167,7 @@ test('Workday sites are read with a POST to the careers site\'s own endpoint', (
   const wd = fixture('workday.json');
   const { env, g, newRun } = boot([{ match: 'example.wd1.myworkdayjobs.com/wday/cxs/example/External/jobs', body: wd }]);
   g.setup();
+  deactivateAll(env);
   endBaseline(env);
   const i = activate(env, 'Northwestern Medicine', 'workday', 'https://example.wd1.myworkdayjobs.com/en-US/External');
   // Pretend this employer was already checked once, so this run is normal.
@@ -170,4 +180,27 @@ test('Workday sites are read with a POST to the careers site\'s own endpoint', (
   const jobs = tab(env, 'Jobs');
   assert.equal(jobs.length, 3);
   assert.equal(jobs.find((j) => /SEO/.test(j.title)).freshness, 'Verified fresh');
+});
+
+test('the seeded watchlist reads ADP, UltiPro, SmartRecruiters, and Workable boards', () => {
+  const { env, g, newRun } = boot([
+    { match: 'cid=aa0ee485-1627-4e67-b9b5-67df4821b456', body: fixture('adp.json') },
+    { match: 'AME1058AMECS/JobBoard/fcdd5634-1774-41fd-982f-92b3b69e46c3/JobBoardView/LoadSearchResults', body: fixture('ultipro.json') },
+    // A tenant-only token is resolved through the page's redirect.
+    { match: 'recruiting.ultipro.com/THR1001THRSH/JobBoard/aaaaaaaa-1111-2222-3333-444444444444/JobBoardView', body: fixture('ultipro.json') },
+    { match: 'recruiting.ultipro.com/THR1001THRSH', code: 302, body: '',
+      headers: { Location: '/THR1001THRSH/JobBoard/aaaaaaaa-1111-2222-3333-444444444444/' } },
+    { match: 'companies/NorthwesternMedicine/postings', body: fixture('smartrecruiters.json') },
+    { match: 'accounts/make-a-wish-illinois', body: fixture('workable.json') },
+  ]);
+  g.setup();
+  newRun();
+  g.runCollector();
+  const sources = new Set(tab(env, 'Jobs').map((j) => j.sources_seen));
+  for (const s of ['adp', 'ultipro', 'smartrecruiters', 'workable']) assert.ok(sources.has(s), 'no jobs from ' + s);
+  const thresholds = tab(env, 'Watchlist').find((w) => w.employer === 'Thresholds');
+  assert.equal(thresholds.consecutive_failures, 0);
+  // The ultipro LoadSearchResults call is a POST.
+  const post = env.fetched.find((f) => f.url.includes('LoadSearchResults'));
+  assert.equal(post.opts.method, 'post');
 });

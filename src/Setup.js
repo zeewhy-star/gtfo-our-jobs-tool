@@ -61,12 +61,13 @@ function seedSettings_() {
   appendObjects_(TABS.SETTINGS, rows);
 }
 
-/** Add the starting watchlist once, inactive until board details are filled in. */
+/**
+ * Add the starting watchlist once. Employers on a careers system the
+ * collector can read start active; the rest start off, with a note.
+ */
 function seedWatchlist_() {
   if (readObjects_(TABS.WATCHLIST).length) return;
-  appendObjects_(TABS.WATCHLIST, WATCHLIST_SEED.map(function (r) {
-    return { employer: r[0], person: r[1], careers_system: '', board_token: '', active: false, consecutive_failures: 0 };
-  }));
+  appendObjects_(TABS.WATCHLIST, watchlistSeedRows_());
   const s = sheet_(TABS.WATCHLIST);
   const sysCol = HEADERS[TABS.WATCHLIST].indexOf('careers_system') + 1;
   const activeCol = HEADERS[TABS.WATCHLIST].indexOf('active') + 1;
@@ -74,6 +75,22 @@ function seedWatchlist_() {
   s.getRange(2, sysCol, n, 1).setDataValidation(
     SpreadsheetApp.newDataValidation().requireValueInList(SUPPORTED_SYSTEMS.concat(['other']), true).build());
   s.getRange(2, activeCol, n, 1).insertCheckboxes();
+}
+
+/** WATCHLIST_SEED as Watchlist rows. Pure. */
+function watchlistSeedRows_() {
+  return WATCHLIST_SEED.map(function (r) {
+    const system = r[2] || '';
+    return {
+      employer: r[0],
+      person: r[1],
+      careers_system: system,
+      board_token: r[3] || '',
+      active: SUPPORTED_SYSTEMS.indexOf(system) !== -1 && !!r[3],
+      consecutive_failures: 0,
+      notes: r[4] || '',
+    };
+  });
 }
 
 /** Replace this project's triggers with the collector and digest schedules. */

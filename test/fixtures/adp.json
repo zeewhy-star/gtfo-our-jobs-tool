@@ -1,0 +1,43 @@
+{
+  "jobRequisitions": [
+    {
+      "itemID": "9200934251898_1",
+      "requisitionTitle": "Senior Manager, Digital Content",
+      "postDate": "2026-10-10T09:08:00.000-05:00",
+      "clientRequisitionID": "2004",
+      "customFieldGroup": {
+        "stringFields": [
+          { "nameCode": { "codeValue": "ExternalJobID" }, "stringValue": "545794" },
+          { "nameCode": { "codeValue": "SalaryRange" }, "stringValue": "100000.00 To 115000.00 (USD) Annually" }
+        ]
+      },
+      "payGradeRange": {
+        "minimumRate": { "amountValue": 100000, "currencyCode": "USD" },
+        "maximumRate": { "amountValue": 115000, "currencyCode": "USD" }
+      },
+      "requisitionLocations": [
+        { "address": { "cityName": "Itasca", "countrySubdivisionLevel1": { "codeValue": "IL" }, "postalCode": "60143" },
+          "nameCode": { "shortName": " Itasca, IL, US" } }
+      ]
+    },
+    {
+      "itemID": "9200933979224_1",
+      "requisitionTitle": "Production Editor",
+      "postDate": "2026-09-21T12:43:00.000-04:00",
+      "customFieldGroup": {
+        "stringFields": [
+          { "nameCode": { "codeValue": "ExternalJobID" }, "stringValue": "545763" },
+          { "nameCode": { "codeValue": "SalaryRange" }, "stringValue": "30.69 To 32.40 (USD) Hourly" }
+        ]
+      },
+      "payGradeRange": {
+        "minimumRate": { "amountValue": 30.69, "currencyCode": "USD" },
+        "maximumRate": { "amountValue": 32.4, "currencyCode": "USD" }
+      },
+      "requisitionLocations": [
+        { "address": { "cityName": "Washington", "countrySubdivisionLevel1": { "codeValue": "DC" } } }
+      ]
+    }
+  ],
+  "meta": { "startSequence": 1, "totalNumber": 2 }
+}
