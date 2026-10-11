@@ -1,0 +1,21 @@
+[
+  {
+    "id": "a1b2c3d4-0000-1111-2222-333344445555",
+    "text": "Program Manager, Member Engagement",
+    "categories": { "location": "Chicago, IL", "commitment": "Full-time", "team": "Programs" },
+    "createdAt": 1791640800000,
+    "hostedUrl": "https://jobs.lever.co/examplenonprofit/a1b2c3d4-0000-1111-2222-333344445555",
+    "applyUrl": "https://jobs.lever.co/examplenonprofit/a1b2c3d4-0000-1111-2222-333344445555/apply",
+    "descriptionPlain": "Own program timelines and budgets.",
+    "workplaceType": "hybrid",
+    "salaryRange": { "currency": "USD", "interval": "per-year-salary", "min": 92000, "max": 105000 }
+  },
+  {
+    "id": "ffff0000-1111-2222-3333-444455556666",
+    "text": "Digital Marketing Specialist",
+    "categories": { "location": "Remote", "commitment": "Full-time" },
+    "createdAt": 1791640800000,
+    "hostedUrl": "https://jobs.lever.co/examplenonprofit/ffff0000-1111-2222-3333-444455556666",
+    "workplaceType": "remote"
+  }
+]

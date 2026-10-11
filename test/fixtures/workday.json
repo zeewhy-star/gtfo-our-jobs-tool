@@ -1,0 +1,27 @@
+{
+  "total": 3,
+  "jobPostings": [
+    {
+      "title": "Associate Director, SEO and Content Strategy",
+      "externalPath": "/job/Chicago-IL/Associate-Director--SEO-and-Content-Strategy_JR12345",
+      "locationsText": "Chicago, IL",
+      "postedOn": "Posted Today",
+      "remoteType": "Hybrid",
+      "bulletFields": ["JR12345"]
+    },
+    {
+      "title": "Senior Project Manager",
+      "externalPath": "/job/Remote/Senior-Project-Manager_JR12001",
+      "locationsText": "Remote",
+      "postedOn": "Posted 30+ Days Ago",
+      "bulletFields": ["JR12001"]
+    },
+    {
+      "title": "Registered Nurse",
+      "externalPath": "/job/Chicago-IL/Registered-Nurse_JR11111",
+      "locationsText": "Chicago, IL",
+      "postedOn": "Posted Yesterday",
+      "bulletFields": ["JR11111"]
+    }
+  ]
+}

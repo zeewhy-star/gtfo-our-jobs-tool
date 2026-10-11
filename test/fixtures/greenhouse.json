@@ -1,0 +1,34 @@
+{
+  "jobs": [
+    {
+      "id": 4012345,
+      "internal_job_id": 2001,
+      "title": "Senior Content Marketing Manager (Remote)",
+      "updated_at": "2026-10-10T09:00:00-04:00",
+      "first_published": "2026-10-10T08:30:00-04:00",
+      "location": { "name": "Remote - US" },
+      "absolute_url": "https://job-boards.greenhouse.io/exampleassoc/jobs/4012345",
+      "content": "&lt;p&gt;Lead our &lt;strong&gt;member communications&lt;/strong&gt; &amp;amp; SEO program.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;GA4&lt;/li&gt;&lt;/ul&gt;"
+    },
+    {
+      "id": 4012399,
+      "internal_job_id": 2002,
+      "title": "Operations Manager",
+      "updated_at": "2026-10-09T10:00:00-04:00",
+      "first_published": "2026-08-01T10:00:00-04:00",
+      "location": { "name": "Chicago, IL" },
+      "absolute_url": "https://job-boards.greenhouse.io/exampleassoc/jobs/4012399",
+      "content": "&lt;p&gt;Run budgets and process improvement.&lt;/p&gt;"
+    },
+    {
+      "id": 4012400,
+      "internal_job_id": 2003,
+      "title": "Staff Accountant",
+      "updated_at": "2026-10-10T09:00:00-04:00",
+      "location": { "name": "Chicago, IL" },
+      "absolute_url": "https://job-boards.greenhouse.io/exampleassoc/jobs/4012400",
+      "content": ""
+    }
+  ],
+  "meta": { "total": 3 }
+}

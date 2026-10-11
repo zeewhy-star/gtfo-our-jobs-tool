@@ -1,0 +1,10 @@
+{
+  "name": "gtfo-our-jobs-tool",
+  "private": true,
+  "description": "Job search system for Zeina and Clint: Google Apps Script collector, scorer, and digest.",
+  "scripts": {
+    "test": "TZ=America/Chicago node --test test/*.test.js",
+    "push": "npm test && clasp push"
+  },
+  "engines": { "node": ">=20" }
+}
